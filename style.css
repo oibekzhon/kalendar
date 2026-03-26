@@ -1,0 +1,403 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;  
+  padding: 20px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f0f4f8;
+  overflow-x: hidden;
+}
+
+.main {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+}
+
+.days {
+  flex: 1;
+  width: 380px;
+  flex-shrink: 0;
+  height: fit-content;
+  padding: 8px 0;
+  margin-top: 20px;
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: #fff;
+  position: sticky;
+  top: 20px;
+}
+
+.days button {
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.days .menu-item {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: black;
+  padding: 10px 16px;
+}
+
+.days .menu-item:hover {
+  background: #e8eef6;
+  color: #111827;
+  border-radius: 8px;
+}
+
+.days button.active .menu-item {
+  background: #dce8f8;
+  color: #1a3a8f;
+  border-radius: 8px;
+}
+
+.calendar-wrapper {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.mainin {
+  flex: 1;
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px 0;
+  scrollbar-width: none;
+  max-width: 1000px;
+}
+
+.mainin::-webkit-scrollbar {
+  display: none;
+}
+
+.blok {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.calendar-month {
+  min-width: 480px;
+  border: 2px solid black;
+  border-radius: 20px;
+  margin: 10px;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.calendar-month h3 {
+  text-align: center;
+  margin: 0 0 16px 0;
+  font-size: 2rem;
+  letter-spacing: 0.05em;
+}
+
+.weekdays,
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.days-grid {
+  margin-top: 10px;
+}
+
+.weekday-label {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.56rem;
+  padding: 4px 0;
+  color: #555;
+}
+
+.day-cell {
+  text-align: center;
+  padding: 10px;
+  font-size: 1.7rem;
+  border-radius: 10px;
+  border: 3px solid white;
+  cursor: default;
+}
+
+.day-cell.other-month {
+  color: #bbb;
+}
+
+.day-cell.today {
+  background: darkblue;
+  color: white;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.day-cell:not(.today):hover {
+  color: #555;
+  background: #e8eef6;
+}
+
+.day-cell.highlighted {
+  border: 3px solid white;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  background-color: darkblue;
+}
+
+.day-cell.highlighted.today {
+  background: darkblue;
+  color: white;
+}
+
+.scroll-btn {
+  background: #fff;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.15);
+}
+
+.scroll-btn:hover {
+  background: silver;
+}
+
+.buttons {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.button {
+  height: 62.4px;
+  width: 82.4px;
+  font-size: 1.7rem;
+  border-radius: 10px;
+  border: 2px solid black;
+  padding: 0 8px;
+  text-align: right;
+  outline: none;
+}
+
+.button::placeholder {
+  justify-content: center;
+  text-align: left;
+  font-size: 1.3rem;
+  color: silver;
+}
+
+.buttons .search {
+  height: 62.4px;
+  width: 247.2px;
+  font-size: 1.7rem;
+  border-radius: 10px;
+  border: 2px solid black;
+  background-color: darkblue;
+  color: white;
+  cursor: pointer;
+}
+
+.today-btn {
+  display: none;
+  height: 62.4px;
+  width: 494.4px;
+  position: absolute;
+  bottom: 25px;
+  left: 25px;
+  padding: 0 24px;
+  font-size: 1.4rem;
+  border-radius: 10px;
+  border: 2px solid black;
+  background-color: darkblue;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.today-btn:hover {
+  opacity: 0.85;
+}
+
+@media (max-width: 1024px) {
+  .days .menu-item {
+    font-size: 1.4rem;
+    padding: 8px 12px;
+  }
+
+  .calendar-month {
+    min-width: 340px;
+  }
+
+  .calendar-month h3 {
+    font-size: 1.4rem;
+  }
+
+  .weekday-label {
+    font-size: 1.1rem;
+  }
+
+  .day-cell {
+    font-size: 1rem;
+    padding: 7px;
+  }
+
+  .button {
+    width: 65px;
+    font-size: 1.2rem;
+    height: 50px;
+  }
+
+  .buttons .search {
+    width: 160px;
+    font-size: 1.2rem;
+    height: 50px;
+  }
+
+  .today-btn {
+    font-size: 1.1rem;
+    height: 50px;
+    width: auto;
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  .main {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .days {
+    width: 100%;
+    position: static;
+    margin-top: 0;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 4px;
+    border-radius: 10px;
+    gap: 4px;
+  }
+
+  .days::-webkit-scrollbar {
+    display: none;
+  }
+
+  .days button {
+    flex-shrink: 0;
+    width: auto;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background: #fff;
+  }
+
+  .days button.active {
+    background: #dce8f8;
+  }
+
+  .days .menu-item {
+    font-size: 0.95rem;
+    padding: 8px 12px;
+    white-space: nowrap;
+  }
+
+  .days .menu-item:hover {
+    border-radius: 6px;
+  }
+
+  .calendar-wrapper {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .mainin {
+    max-width: 100%;
+  }
+
+  .calendar-month {
+    min-width: calc(100vw - 100px);
+    padding: 12px;
+    border-radius: 12px;
+    margin: 6px;
+  }
+
+  .calendar-month h3 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+
+  .weekday-label {
+    font-size: 0.75rem;
+    padding: 2px 0;
+  }
+
+  .day-cell {
+    width: 2.19rem;
+    font-size: 0.65rem;
+    padding: 6px 2px;
+    border-radius: 6px;
+    border-width: 2px;
+  }
+
+  .scroll-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .buttons {
+    position: static;
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    padding-bottom: 20px;
+  }
+
+  .button {
+    height: 48px;
+    width: 70px;
+    font-size: 1.1rem;
+  }
+
+  .buttons .search {
+    height: 48px;
+    width: 100%;
+    font-size: 1.2rem;
+  }
+
+  .today-btn {
+    position: static;
+    display: none;
+    width: 100%;
+    height: 48px;
+    font-size: 1rem;
+    margin-top: 8px;
+    padding: 0 12px;
+  }
+}

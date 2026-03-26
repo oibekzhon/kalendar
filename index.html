@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalendar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="main">
+
+        <div class="days" id="days">
+            <button>
+                <div class="menu-item">Today</div>
+            </button>
+            <button>
+                <div class="menu-item">Yesterday</div>
+            </button>
+            <button>
+                <div class="menu-item">Last 7 Days</div>
+            </button>
+            <button>
+                <div class="menu-item">Last 30 Days</div>
+            </button>
+            <button>
+                <div class="menu-item">Last Month</div>
+            </button>
+            <button>
+                <div class="menu-item">This Month</div>
+            </button>
+            <button>
+                <div class="menu-item">Next Month</div>
+            </button>
+        </div>
+
+        <div class="calendar-wrapper">
+            <button class="scroll-btn left" id="leftBtn">←</button>
+            <div class="mainin">
+                <div class="blok" id="blok"></div>
+            </div>
+            <button class="scroll-btn right" id="rightBtn">→</button>
+        </div>
+
+    </div>
+
+    <button class="today-btn" id="todayBtn"></button>
+
+    <div class="buttons">
+        <input class="button" id="day" type="text" placeholder="Day">
+        <input class="button" id="month" type="text" placeholder="Month">
+        <input class="button" id="year" type="text" placeholder="Year" maxlength="4">
+        <button class="search" id="search">Search</button>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
